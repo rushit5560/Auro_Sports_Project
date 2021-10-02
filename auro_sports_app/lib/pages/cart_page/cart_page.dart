@@ -105,7 +105,7 @@ class _CartPageState extends State<CartPage> {
                                           borderRadius: BorderRadius.circular(10),
                                           image: DecorationImage(
                                             image: NetworkImage(
-                                                '${ApiUrl.MainPath}${cartController.userCartProductLists[index].showimg}'),
+                                                '${ApiUrl.MainPath}asset/uploads/product/${cartController.userCartProductLists[index].showimg}'),
                                             fit: BoxFit.cover,
                                           )),
                                     ),
