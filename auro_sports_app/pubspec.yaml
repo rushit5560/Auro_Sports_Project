@@ -38,6 +38,7 @@ dependencies:
   flutter_html: ^2.1.2
   url_launcher: ^6.0.10
   flutter_web_browser: ^0.15.0
+  shimmer: ^2.0.0
 
 
 dev_dependencies:

@@ -1,6 +1,7 @@
 import 'package:auro_sports_app/common/api_url.dart';
 import 'package:auro_sports_app/common/custom_color.dart';
 import 'package:auro_sports_app/common/custom_drawer/custom_drawer.dart';
+import 'package:auro_sports_app/common/shimmer_loader/shimmer_loader.dart';
 import 'package:auro_sports_app/pages/cart_page/cart_page.dart';
 import 'package:auro_sports_app/pages/collection_page/collection_page.dart';
 import 'package:auro_sports_app/pages/home_page/home_controller.dart';
@@ -43,12 +44,13 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: CustomDrawer(),
       body: Obx(() => homeController.isLoading.value
-          ? Center(
+          /*? Center(
               child: CircularProgressIndicator(
                 color: CustomColor.kOrangeColor,
                 backgroundColor: Colors.grey,
               ),
-            )
+            )*/
+          ? ShimmerLoader().homePageLoader()
           : SingleChildScrollView(
               child: Column(
                 children: [
