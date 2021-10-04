@@ -458,27 +458,3 @@ class _CartPageState extends State<CartPage> {
     );
   }
 }
-
-// Container(
-// width: 50,
-// height: 25,
-// child: TextFormField(
-// textAlign: TextAlign.center,
-// cursorColor: Colors.grey,
-// initialValue: '1',
-// keyboardType: TextInputType.number,
-// decoration: InputDecoration(
-// isDense: true,
-// contentPadding: EdgeInsets.symmetric(
-// horizontal: 10, vertical: 5),
-// focusedBorder: OutlineInputBorder(
-// borderSide: BorderSide(color: Colors.grey),
-// borderRadius: BorderRadius.circular(6),
-// ),
-// enabledBorder: OutlineInputBorder(
-// borderSide: BorderSide(color: Colors.grey),
-// borderRadius: BorderRadius.circular(6),
-// ),
-// ),
-// ),
-// ),
