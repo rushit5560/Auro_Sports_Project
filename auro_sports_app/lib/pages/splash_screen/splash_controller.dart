@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'package:auro_sports_app/pages/index_page/index_page.dart';
 import 'package:auro_sports_app/pages/onboarding_page/onboarding_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashController extends GetxController {
   bool? onBoardingValue = false;
+  BuildContext? context;
 
   @override
   void onInit() {
@@ -22,9 +25,11 @@ class SplashController extends GetxController {
     if(onBoardingValue == true) {
       getUserDetails();
       Get.off(() => IndexPage());
+      // Navigator.push(context!, MaterialPageRoute(builder: (context) => IndexPage()));
     }
     else/* if(onBoardingValue == false) */{
       Get.off(() => OnBoardingPage());
+      // Navigator.push(context!, MaterialPageRoute(builder: (context) => OnBoardingPage()));
     }
   }
 
