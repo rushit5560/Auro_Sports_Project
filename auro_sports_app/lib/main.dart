@@ -1,12 +1,13 @@
+import 'package:auro_sports_app/pages/language/localization_service.dart';
 import 'package:auro_sports_app/pages/splash_screen/splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-void main() async{
-  //runApp(MyApp());
-  Get.testMode = true;
+void main(){
+  runApp(MyApp());
+  /*Get.testMode = true;
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
@@ -20,7 +21,7 @@ void main() async{
       ],
       path: 'assets/translations',
       fallbackLocale: Locale('en', ''),
-      child: MyApp()));
+      child: MyApp()));*/
 }
 
 // class MyApp extends StatefulWidget {
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       //navigatorKey: navigatorKey,
       title: "Auro Sports App",
       debugShowCheckedModeBanner: false,
@@ -51,12 +52,15 @@ class MyApp extends StatelessWidget {
         const Locale('ar', ''),
         const Locale('hi', ''),
       ],*/
-      localizationsDelegates: context.localizationDelegates,
+      /*localizationsDelegates: context.localizationDelegates,
        supportedLocales: context.supportedLocales,
-       locale: context.locale,
+       locale: context.locale,*/
       /*getPages: [
         GetPage(name: '/', page: () => SplashScreen()),
       ],*/
+      locale: LocalizationService.locale,
+      fallbackLocale: LocalizationService.fallbackLocale,
+      translations: LocalizationService(),
       home: SplashScreen(),
     );
   }

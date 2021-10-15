@@ -255,6 +255,7 @@ class _SettingsPageState extends State<SettingsPage> {
             );
           },
           child: Container(
+            padding: const EdgeInsets.only(right: 15, top: 10, bottom: 10),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -262,7 +263,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    getTranslateVal(AppLocalKey.up_lan_language),
+                    'Languages',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
