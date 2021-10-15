@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class CommonFunctions {
+  //static SharedPreferences prefs;
+  static const String isReverseTextDir = "isReverseTextDir";
 
   setUserDetailsInPrefs(id, token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -25,6 +27,21 @@ class CommonFunctions {
     prefs.remove('id');
     prefs.remove('token');
     print('----------ClearUserDetails Method Finish----------');
+  }
+
+  static Future prefGetString1(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+   // prefs = await SharedPreferences.getInstance();
+    if (prefs.getString(key) != null) {
+      return prefs.getString(key);
+    }
+    //prefs.getString(key);
+  }
+
+  static Future prefSetString(String key, String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString(key, value);
   }
 
 }

@@ -1,7 +1,14 @@
+import 'package:auro_sports_app/common/app_local_key.dart';
 import 'package:auro_sports_app/common/custom_color.dart';
+
 import 'settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:auro_sports_app/pages/language/language_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -41,6 +48,8 @@ class _SettingsPageState extends State<SettingsPage> {
           darkMode(),
           SizedBox(height: 10),
           newDeals(),
+          SizedBox(height: 10),
+          Languages(),
         ],
       ),
     );
@@ -245,6 +254,44 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           ),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+        ),
+      ),
+    );
+  }
+
+  Widget Languages() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+      child: Material(
+        elevation: 3,
+        borderRadius: BorderRadius.circular(20),
+        child: GestureDetector(
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LanguageScreen(gotoNext: "gotoNext")),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    getTranslateVal(AppLocalKey.up_lan_language),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Icon(Icons.arrow_forward_ios_outlined)
+              ],
+            ),
+
+          ),
         ),
       ),
     );
