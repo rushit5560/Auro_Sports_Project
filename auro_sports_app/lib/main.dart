@@ -16,6 +16,10 @@ class MyApp extends StatelessWidget {
       title: "Auro Sports App",
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
+
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.white
+      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:auro_sports_app/common/custom_color.dart';
+import 'settings_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -9,10 +11,13 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
+  SettingsPageController settingsPageController = Get.put(SettingsPageController());
+
   bool _notificationValue = false;
   bool _smsValue = false;
   bool _emailsValue = false;
-  bool _darkModeValue = false;
+  // bool _darkModeValue = false;
   bool _newDealsValue = false;
 
   @override
@@ -56,7 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Text(
                   'Allow Notification',
                   style: TextStyle(
-                    color: Colors.black,
+                    // color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -95,7 +100,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Text(
                   'Allow SMS',
                   style: TextStyle(
-                    color: Colors.black,
+                    // color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -134,7 +139,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Text(
                   'Allow Emails',
                   style: TextStyle(
-                    color: Colors.black,
+                    // color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -159,39 +164,48 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget darkMode() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-      child: Material(
-        elevation: 3,
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  'Dark Mode',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+    return Obx(
+        ()=> Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+        child: Material(
+          elevation: 3,
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Dark Mode',
+                    style: TextStyle(
+                      // color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              Switch(
-                value: _darkModeValue,
-                onChanged: (value) {
-                  setState(() {
-                    _darkModeValue = value;
-                    print(_darkModeValue);
-                  });
-                },
-                activeTrackColor: CustomColor.kLightOrangeColor,
-                activeColor: CustomColor.kOrangeColor,
-              )
-            ],
+                Switch(
+                  value: settingsPageController.isDarkMode.value,
+
+                  onChanged: (value) {
+
+                    setState(() {
+                      settingsPageController.isDarkMode.value = value;
+                      settingsPageController.isDarkMode.value
+                      ? Get.changeTheme(ThemeData.dark())
+                      : Get.changeTheme(ThemeData.light());
+                      print(settingsPageController.isDarkMode.value);
+                      settingsPageController.setIsDarkMode(value);
+                    });
+
+                  },
+                  activeTrackColor: CustomColor.kLightOrangeColor,
+                  activeColor: CustomColor.kOrangeColor,
+                )
+              ],
+            ),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           ),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
         ),
       ),
     );
@@ -212,7 +226,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Text(
                   'New Deals',
                   style: TextStyle(
-                    color: Colors.black,
+                    // color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

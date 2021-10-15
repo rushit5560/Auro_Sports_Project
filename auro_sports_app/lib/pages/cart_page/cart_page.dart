@@ -124,7 +124,7 @@ class _CartPageState extends State<CartPage> {
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.black,
+                                                // color: Colors.black,
                                                 fontSize: 18),
                                           ),
                                           SizedBox(height: 5),
@@ -132,7 +132,7 @@ class _CartPageState extends State<CartPage> {
                                             'Qty : ${cartController.userCartProductLists[index].cquantity}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.black,
+                                              // color: Colors.black,
                                             ),
                                           ),
                                           SizedBox(height: 5),
@@ -151,7 +151,7 @@ class _CartPageState extends State<CartPage> {
                                                 '\$${cartController.userCartProductLists[index].totalcost}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.black,
+                                                    // color: Colors.black,
                                                     decoration: TextDecoration
                                                         .lineThrough),
                                               ),
@@ -314,14 +314,14 @@ class _CartPageState extends State<CartPage> {
                 'Sub Total',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
+                  // color: Colors.black,
                 ),
               ),
               Text(
                 '\$${cartController.userCartTotalAmount}',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
+                  // color: Colors.black,
                 ),
               ),
             ],
@@ -345,14 +345,14 @@ class _CartPageState extends State<CartPage> {
                 'Tax',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
+                  // color: Colors.black,
                 ),
               ),
               Text(
                 '\$00.00',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
+                  // color: Colors.black,
                 ),
               ),
             ],
@@ -376,14 +376,14 @@ class _CartPageState extends State<CartPage> {
                 'Discount',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
+                  // color: Colors.black,
                 ),
               ),
               Text(
                 '\$00.00',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
+                  // color: Colors.black,
                 ),
               ),
             ],
@@ -407,7 +407,7 @@ class _CartPageState extends State<CartPage> {
                 'Total',
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
+                  // color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -415,7 +415,7 @@ class _CartPageState extends State<CartPage> {
                   '\$${cartController.userCartTotalAmount}',
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.black,
+                    // color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -457,4 +457,5 @@ class _CartPageState extends State<CartPage> {
       ),
     );
   }
+
 }

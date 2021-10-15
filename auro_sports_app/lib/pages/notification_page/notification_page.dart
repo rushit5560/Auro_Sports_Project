@@ -81,7 +81,7 @@ class NotificationPage extends StatelessWidget {
                                     softWrap: true,
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.black,
+                                        // color: Colors.black,
                                         fontSize: 18),
                                   ),
                                   SizedBox(height: 5),
@@ -92,7 +92,7 @@ class NotificationPage extends StatelessWidget {
                                     softWrap: true,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                                      // color: Colors.black,
                                     ),
                                   ),
                                 ],

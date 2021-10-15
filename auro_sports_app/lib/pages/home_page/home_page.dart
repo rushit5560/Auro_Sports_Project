@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
     'assets/images/newarrival3.png',
     'assets/images/newarrival1.png',
   ];
-  int activeIndex1 = 0;
-
+  // int activeIndex1 = 0;
   HomeController homeController = Get.put(HomeController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                 'New Arrival',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  // color: Colors.black,
                   fontSize: 18,
                 ),
               ),
@@ -461,7 +461,7 @@ Widget featuredProducts() {
                 'Featured Products',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  // color: Colors.black,
                   fontSize: 18,
                 ),
               ),
