@@ -62,6 +62,10 @@ class MyApp extends StatelessWidget {
       fallbackLocale: LocalizationService.fallbackLocale,
       translations: LocalizationService(),
       home: SplashScreen(),
+
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.white
+      ),
     );
   }
 }

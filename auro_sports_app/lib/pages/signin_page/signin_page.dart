@@ -241,7 +241,7 @@ class _SignInPageState extends State<SignInPage> {
         children: [
           Text(
             'have Not Account?',
-            style: TextStyle(color: Colors.black, fontSize: 17),
+            style: TextStyle(/*color: Colors.black,*/ fontSize: 17),
           ),
           SizedBox(width: 10),
           GestureDetector(

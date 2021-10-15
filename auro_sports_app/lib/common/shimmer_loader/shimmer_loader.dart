@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerLoader {
@@ -16,17 +17,17 @@ class ShimmerLoader {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 40,
+                fontSize: Get.width * 0.10,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             Text(
-              'Application',
+              'All in One Shop',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 40,
+                fontSize: Get.width * 0.05,
                 fontWeight: FontWeight.bold,
               ),
             ),

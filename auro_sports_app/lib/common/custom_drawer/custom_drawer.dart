@@ -138,10 +138,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => IndexPage());
       },
-      leading: Icon(Icons.home_outlined,color: Colors.black,),
+      leading: Icon(Icons.home_outlined,/*color: Colors.black,*/),
       title: Text('Home',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -152,10 +152,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => CollectionPage());
       },
-      leading: Icon(Icons.storefront_outlined,color: Colors.black,),
+      leading: Icon(Icons.storefront_outlined,/*color: Colors.black,*/),
       title: Text('Collection',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -166,10 +166,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => CategoryPage());
       },
-      leading: Icon(Icons.category_outlined,color: Colors.black,),
+      leading: Icon(Icons.category_outlined,/*color: Colors.black,*/),
       title: Text('Categories',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -180,10 +180,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => ProfilePage());
       },
-      leading: Icon(Icons.person_outline_outlined,color: Colors.black,),
+      leading: Icon(Icons.person_outline_outlined,/*color: Colors.black,*/),
       title: Text('Profile',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -194,10 +194,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => NotificationPage());
       },
-      leading: Icon(Icons.notifications_on_outlined,color: Colors.black,),
+      leading: Icon(Icons.notifications_on_outlined,/*color: Colors.black,*/),
       title: Text('Notification',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -208,10 +208,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => SettingsPage());
       },
-      leading: Icon(Icons.settings_outlined,color: Colors.black,),
+      leading: Icon(Icons.settings_outlined,/*color: Colors.black,*/),
       title: Text('Settings',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -223,10 +223,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Get.back();
           Get.to(() => SignInPage());
         },
-        leading: Icon(Icons.login_outlined,color: Colors.black,),
+        leading: Icon(Icons.login_outlined,/*color: Colors.black,*/),
         title: Text('Login',
           textScaleFactor: 1.2,
-          style: TextStyle(color: Colors.black),
+          // style: TextStyle(color: Colors.black),
         ),
       ),
     );
@@ -238,10 +238,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => ContactUsPage());
       },
-      leading: Icon(Icons.contact_phone_outlined,color: Colors.black,),
+      leading: Icon(Icons.contact_phone_outlined,/*color: Colors.black,*/),
       title: Text('Contact Us',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -252,10 +252,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => OrderPage());
       },
-      leading: Icon(Icons.apps_outlined,color: Colors.black,),
+      leading: Icon(Icons.apps_outlined,/*color: Colors.black,*/),
       title: Text('Orders',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -266,10 +266,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => WishListPage());
       },
-      leading: Icon(Icons.list_alt_rounded,color: Colors.black,),
+      leading: Icon(Icons.list_alt_rounded,/*color: Colors.black,*/),
       title: Text('Wishlist',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -280,10 +280,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
         Get.back();
         Get.to(() => BlogPage());
       },
-      leading: Icon(Icons.post_add_rounded,color: Colors.black,),
+      leading: Icon(Icons.post_add_rounded,/*color: Colors.black,*/),
       title: Text('Blogs',
         textScaleFactor: 1.2,
-        style: TextStyle(color: Colors.black),
+        // style: TextStyle(color: Colors.black),
       ),
     );
   }
@@ -297,10 +297,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           CommonFunctions().clearUserDetailsFromPrefs();
           Get.snackbar('User LogOut Successfully', '');
         },
-        leading: Icon(Icons.login_outlined,color: Colors.black,),
+        leading: Icon(Icons.login_outlined,/*color: Colors.black,*/),
         title: Text('Logout',
           textScaleFactor: 1.2,
-          style: TextStyle(color: Colors.black),
+          // style: TextStyle(color: Colors.black),
         ),
       ),
     );
