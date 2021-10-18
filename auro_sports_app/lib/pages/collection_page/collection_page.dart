@@ -6,37 +6,118 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CollectionPage extends StatelessWidget {
-
   CollectionController collectionController = Get.put(CollectionController());
 
-  List<String> tabsList = [
-    'SEE ALL', 'BLAZERS', 'DRESSES', 'JACKETS', 'JEANS'
-  ];
+  List<String> tabsList = ['SEE ALL', 'BLAZERS', 'DRESSES', 'JACKETS', 'JEANS'];
+
+  void onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        print('Date Selected');
+        break;
+      case 1:
+        print('Featured Selected');
+        break;
+      case 2:
+        print('On Sale Selected');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabsList.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Collection'),
-          centerTitle: true,
-          backgroundColor: CustomColor.kOrangeColor,
-          elevation: 0,
+      child: Obx(
+        ()=> Scaffold(
+          appBar: AppBar(
+            title: collectionController.isClicked.value ? Text('Filter') : Text('Collection'),
+            centerTitle: true,
+            backgroundColor: CustomColor.kOrangeColor,
+            elevation: 0,
 
-          // TabBar List
-          bottom: tabBarList(),
-        ),
+            // TabBar List
+            bottom: tabBarList(),
 
+            actions: [
 
-        body: TabBarView(
-          children: [
-            newArrival(),
-            newArrival(),
-            newArrival(),
-            newArrival(),
-            newArrival(),
-          ],
+              PopupMenuButton<int>(
+                // child: Icon(Icons.arrow_drop_down_circle_rounded),
+                onSelected: (item) => onSelected(context, item),
+                itemBuilder: (context)=> [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      children: [
+                        Icon(
+                            Icons.date_range_rounded,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Text('Date'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.star_border_outlined,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Text('Featured'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.star_border_outlined,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Text('On Sale'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              Obx(
+                ()=> GestureDetector(
+                  onTap: () {
+                    collectionController.isClicked.value = !collectionController.isClicked.value;
+                  },
+                  child: collectionController.isClicked.value ? Icon(Icons.close_rounded) : Icon(Icons.menu_rounded),
+                ),
+              ),
+              SizedBox(width: 10),
+
+              // GestureDetector(
+              //   onTap: () {
+              //     print('');
+              //   },
+              //   child: Icon(Icons.menu_rounded),
+              // ),
+              // SizedBox(width: 10),
+
+            ],
+          ),
+          body: TabBarView(
+            children: [
+              newArrival(),
+              newArrival(),
+              newArrival(),
+              newArrival(),
+              newArrival(),
+            ],
+          ),
         ),
       ),
     );
@@ -50,10 +131,14 @@ class CollectionPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: TabBar(
-              tabs: tabsList.map((title) => SizedBox(height: 30,child: Tab(text: title))).toList(),
+              tabs: tabsList
+                  .map((title) => SizedBox(height: 30, child: Tab(text: title)))
+                  .toList(),
               isScrollable: true,
               indicatorSize: TabBarIndicatorSize.tab,
               // indicatorColor: Colors.white,
+              // labelColor: Colors.white,
+              // unselectedLabelColor: Colors.white,
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.white38,
@@ -94,10 +179,13 @@ class CollectionPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                       onTap: () {
-                        print('Product id : ${collectionController.collectionLists[index].id}');
-                        Get.to(() => ProductDetailPage(),
+                        print(
+                            'Product id : ${collectionController.collectionLists[index].id}');
+                        Get.to(
+                          () => ProductDetailPage(),
                           transition: Transition.rightToLeft,
-                          arguments: collectionController.collectionLists[index].id,
+                          arguments:
+                              collectionController.collectionLists[index].id,
                         );
                       },
                       child: Container(

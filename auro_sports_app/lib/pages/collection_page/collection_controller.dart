@@ -9,6 +9,7 @@ class CollectionController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isStatus = false.obs;
   List<Datum> collectionLists = [];
+  RxBool isClicked = false.obs;
 
 
   getCollectionData() async {
