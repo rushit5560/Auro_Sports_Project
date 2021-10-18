@@ -1,13 +1,8 @@
-import 'package:auro_sports_app/common/app_local_key.dart';
 import 'package:auro_sports_app/common/custom_color.dart';
-
 import 'settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:auro_sports_app/pages/language/language_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 
 class SettingsPage extends StatefulWidget {
@@ -203,8 +198,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       settingsPageController.isDarkMode.value
                       ? Get.changeTheme(ThemeData.dark())
                       : Get.changeTheme(ThemeData.light());
-                      print(settingsPageController.isDarkMode.value);
-                      settingsPageController.setIsDarkMode(value);
+                      print('Switch Value : ${settingsPageController.isDarkMode.value}');
+                      settingsPageController.setIsDarkMode(settingsPageController.isDarkMode.value);
                     });
 
                   },

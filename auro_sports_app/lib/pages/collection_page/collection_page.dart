@@ -9,17 +9,59 @@ class CollectionPage extends StatelessWidget {
 
   CollectionController collectionController = Get.put(CollectionController());
 
+  List<String> tabsList = [
+    'SEE ALL', 'BLAZERS', 'DRESSES', 'JACKETS', 'JEANS'
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Collection'),
-        centerTitle: true,
-        backgroundColor: CustomColor.kOrangeColor,
-        elevation: 0,
+    return DefaultTabController(
+      length: tabsList.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Collection'),
+          centerTitle: true,
+          backgroundColor: CustomColor.kOrangeColor,
+          elevation: 0,
+
+          // TabBar List
+          bottom: tabBarList(),
+        ),
+
+
+        body: TabBarView(
+          children: [
+            newArrival(),
+            newArrival(),
+            newArrival(),
+            newArrival(),
+            newArrival(),
+          ],
+        ),
       ),
-      body: SingleChildScrollView(
-        child: newArrival(),
+    );
+  }
+
+  PreferredSizeWidget tabBarList() {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(40.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: TabBar(
+              tabs: tabsList.map((title) => SizedBox(height: 30,child: Tab(text: title))).toList(),
+              isScrollable: true,
+              indicatorSize: TabBarIndicatorSize.tab,
+              // indicatorColor: Colors.white,
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.white38,
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+        ],
       ),
     );
   }
