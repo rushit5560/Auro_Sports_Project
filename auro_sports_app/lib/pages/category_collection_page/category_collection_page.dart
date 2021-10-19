@@ -177,14 +177,17 @@ class _CategoryCollectionPageState extends State<CategoryCollectionPage> with Si
   Widget backPanelModule() {
     return Container(
       color: CustomColor.kOrangeColor,
-      child: Center(
-        child: Text(
-          'Back Panel',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'LAYOUTS',
+            style: TextStyle(
+                color: Colors.white
+            ),
           ),
-        ),
+
+        ],
       ),
     );
   }

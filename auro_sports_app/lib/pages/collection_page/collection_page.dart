@@ -74,7 +74,9 @@ class _CollectionPageState extends State<CollectionPage> with SingleTickerProvid
             elevation: 0,
 
             // TabBar List
-            bottom: tabBarList(),
+            bottom: collectionController.isClicked.value
+              ? tabBarHide()
+              : tabBarList(),
 
             actions: [
 
@@ -157,33 +159,162 @@ class _CollectionPageState extends State<CollectionPage> with SingleTickerProvid
     return Container(
       child: Stack(
         children: [
-          // BackPanel Module
+          // BackPanel Module - Call
           backPanelModule(),
 
-          // FrontPanel Module
+          // FrontPanel Module - Call
           frontPanelModule(constraints),
         ],
       ),
     );
   }
 
+  RangeValues _currentRangeValues = const RangeValues(0, 8000);
+
   // BackPanel Module
   Widget backPanelModule() {
-    return Container(
+    return collectionController.isClicked.value
+    ? Container(
       color: CustomColor.kOrangeColor,
-      child: Center(
-        child: Text(
-          'Back Panel',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-          ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+
+            // Layouts Module
+            Text(
+              'LAYOUTS',
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 30,
+              child: ListView.builder(
+                itemCount: 4,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index){
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: GestureDetector(
+                      onTap: () {
+                        collectionController.isViewSelected.value = index;
+                        print('${collectionController.isViewSelected.value}');
+                      },
+                      child: Container(
+                        height: 25,
+                        width: 25,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: CustomColor.kLightOrangeColor,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 10),
+
+
+            // Price Module
+            Text(
+              'BY PRICE',
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '\$ ${_currentRangeValues.start}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  ),
+                ),
+                SizedBox(width: 5),
+                Text(
+                  '-',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 5),
+                Text(
+                  '\$ ${_currentRangeValues.end}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+            RangeSlider(
+              values: _currentRangeValues,
+              min: 0,
+              max: 8000,
+              divisions: 10,
+              inactiveColor: Colors.white54,
+              activeColor: Colors.white,
+              labels: RangeLabels(
+                _currentRangeValues.start.round().toString(),
+                _currentRangeValues.end.round().toString(),
+              ),
+              onChanged: (RangeValues value) {
+                setState(() {
+                  _currentRangeValues = value;
+                });
+              },),
+            SizedBox(height: 10),
+
+            // Apply Button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: GestureDetector(
+                onTap: () {
+                  print('Apply');
+                  print('Start : ${_currentRangeValues.start}');
+                  print('End : ${_currentRangeValues.end}');
+
+                  collectionController.isClicked.value =
+                  !collectionController.isClicked.value;
+
+                  controller.fling(velocity: isPanelVisible ? -1.0 : 1.0);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: CustomColor.kLightOrangeColor,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      'APPLY',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+
+          ],
         ),
       ),
-    );
+    )
+    : Container();
   }
 
-  // Front Panel Module
+  // FrontPanel Module
   Widget frontPanelModule(constraints) {
     return PositionedTransition(
       rect: getPanelAnimation(constraints),
@@ -215,7 +346,9 @@ class _CollectionPageState extends State<CollectionPage> with SingleTickerProvid
   PreferredSizeWidget tabBarList() {
     return PreferredSize(
       preferredSize: Size.fromHeight(40.0),
-      child: Column(
+      child: collectionController.isClicked.value
+          ? Container()
+          : Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -240,9 +373,16 @@ class _CollectionPageState extends State<CollectionPage> with SingleTickerProvid
     );
   }
 
+  PreferredSizeWidget tabBarHide() {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(0.0),
+      child: Container(),
+    );
+  }
+
   Widget newArrival() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Obx(
         () => collectionController.isLoading.value
             ? Container(
@@ -260,7 +400,13 @@ class _CollectionPageState extends State<CollectionPage> with SingleTickerProvid
                 shrinkWrap: true,
                 physics: BouncingScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: collectionController.isViewSelected.value == 0
+                                  ? 2
+                                  : collectionController.isViewSelected.value == 1
+                                    ? 3
+                                    : collectionController.isViewSelected.value == 2
+                                      ? 1
+                                      : 2,
                   childAspectRatio: 0.85,
                 ),
                 itemBuilder: (context, index) {
