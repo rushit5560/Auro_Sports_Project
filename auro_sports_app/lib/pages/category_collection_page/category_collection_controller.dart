@@ -15,6 +15,7 @@ class CategoryCollectionController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isStatus = false.obs;
   List<Datum> categoryCollectionLists = [];
+  RxBool isClicked = false.obs;
 
   getCategoryCollectionData() async {
     isLoading(true);

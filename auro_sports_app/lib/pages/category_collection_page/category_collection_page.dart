@@ -6,38 +6,212 @@ import 'package:get/get.dart';
 
 import 'category_collection_controller.dart';
 
-class CategoryCollectionPage extends StatelessWidget {
+class CategoryCollectionPage extends StatefulWidget {
   // const CategoryCollectionPage({Key? key}) : super(key: key);
+  @override
+  _CategoryCollectionPageState createState() => _CategoryCollectionPageState();
+}
 
+class _CategoryCollectionPageState extends State<CategoryCollectionPage> with SingleTickerProviderStateMixin {
   CategoryCollectionController categoryCollectionController = Get.put(CategoryCollectionController());
 
   List<String> tabsList = [
     'SEE ALL', 'BLAZERS', 'DRESSES', 'JACKETS', 'JEANS'
   ];
 
+  late AnimationController controller;
+  static const header_height = 32.0;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 100), value: 1.0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  Animation<RelativeRect> getPanelAnimation(BoxConstraints constraints) {
+    final height = constraints.biggest.height;
+    final backPanelHeight = height - header_height;
+    final frontPanelHeight = -header_height;
+
+    return RelativeRectTween(
+      begin: RelativeRect.fromLTRB(0.0, backPanelHeight, 0.0, frontPanelHeight),
+      end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.linear));
+  }
+
+  bool get isPanelVisible {
+    final AnimationStatus status = controller.status;
+    return status == AnimationStatus.completed ||
+        status == AnimationStatus.forward;
+  }
+
+  void onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        print('Date Selected');
+        break;
+      case 1:
+        print('Featured Selected');
+        break;
+      case 2:
+        print('On Sale Selected');
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabsList.length,
-      child: Scaffold(
+      child: Obx(
+        ()=> Scaffold(
 
-        appBar: AppBar(
-          title: Text('${categoryCollectionController.categoryName.toString()}'),
-          centerTitle: true,
-          backgroundColor: CustomColor.kOrangeColor,
-          elevation: 0,
+          appBar: AppBar(
+            title: categoryCollectionController.isClicked.value
+                ? Text('Filter')
+                : Text('${categoryCollectionController.categoryName.toString()}'),
+            centerTitle: true,
+            backgroundColor: CustomColor.kOrangeColor,
+            elevation: 0,
 
-          // TabBar List
-          bottom: tabBarList(),
+            // TabBar List
+            bottom: tabBarList(),
+
+            actions: [
+              PopupMenuButton<int>(
+                // child: Icon(Icons.arrow_drop_down_circle_rounded),
+                onSelected: (item) => onSelected(context, item),
+                itemBuilder: (context)=> [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.date_range_rounded,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Text('Date'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.star_border_outlined,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Text('Featured'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.star_border_outlined,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        SizedBox(width: 10),
+                        Text('On Sale'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              IconButton(
+                onPressed: () {
+                  categoryCollectionController.isClicked.value =
+                  !categoryCollectionController.isClicked.value;
+                  controller.fling(velocity: isPanelVisible ? -1.0 : 1.0);
+                },
+                icon: AnimatedIcon(
+                  icon: AnimatedIcons.close_menu,
+                  progress: controller.view,
+                ),
+              ),
+              SizedBox(width: 10),
+            ],
+          ),
+
+          body: LayoutBuilder(
+            builder: bothPanels,
+          ),
         ),
+      ),
+    );
+  }
 
-        body: TabBarView(
+  Widget bothPanels(BuildContext context, BoxConstraints constraints) {
+
+    return Container(
+      child: Stack(
+        children: [
+          // BackPanel Module
+          backPanelModule(),
+
+          // FrontPanel Module
+          frontPanelModule(constraints),
+        ],
+      ),
+    );
+  }
+
+  // BackPanel Module
+  Widget backPanelModule() {
+    return Container(
+      color: CustomColor.kOrangeColor,
+      child: Center(
+        child: Text(
+          'Back Panel',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Front Panel Module
+  Widget frontPanelModule(constraints) {
+    return PositionedTransition(
+      rect: getPanelAnimation(constraints),
+      child: Material(
+        elevation: 10,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+        child: Column(
           children: [
-            categoryCollection(),
-            categoryCollection(),
-            categoryCollection(),
-            categoryCollection(),
-            categoryCollection(),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  categoryCollection(),
+                  categoryCollection(),
+                  categoryCollection(),
+                  categoryCollection(),
+                  categoryCollection(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -5,10 +5,48 @@ import 'package:auro_sports_app/pages/product_detail_page/product_detail_page.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CollectionPage extends StatelessWidget {
+class CollectionPage extends StatefulWidget {
+  @override
+  _CollectionPageState createState() => _CollectionPageState();
+}
+
+class _CollectionPageState extends State<CollectionPage> with SingleTickerProviderStateMixin {
   CollectionController collectionController = Get.put(CollectionController());
 
   List<String> tabsList = ['SEE ALL', 'BLAZERS', 'DRESSES', 'JACKETS', 'JEANS'];
+
+  late AnimationController controller;
+  static const header_height = 32.0;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 100), value: 1.0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  Animation<RelativeRect> getPanelAnimation(BoxConstraints constraints) {
+    final height = constraints.biggest.height;
+    final backPanelHeight = height - header_height;
+    final frontPanelHeight = -header_height;
+
+    return RelativeRectTween(
+      begin: RelativeRect.fromLTRB(0.0, backPanelHeight, 0.0, frontPanelHeight),
+      end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.linear));
+  }
+
+  bool get isPanelVisible {
+    final AnimationStatus status = controller.status;
+    return status == AnimationStatus.completed ||
+        status == AnimationStatus.forward;
+  }
 
   void onSelected(BuildContext context, int item) {
     switch (item) {
@@ -89,35 +127,86 @@ class CollectionPage extends StatelessWidget {
                 ],
               ),
 
-              Obx(
-                ()=> GestureDetector(
-                  onTap: () {
-                    collectionController.isClicked.value = !collectionController.isClicked.value;
-                  },
-                  child: collectionController.isClicked.value ? Icon(Icons.close_rounded) : Icon(Icons.menu_rounded),
+              IconButton(
+                onPressed: () {
+                  collectionController.isClicked.value =
+                  !collectionController.isClicked.value;
+
+                  controller.fling(velocity: isPanelVisible ? -1.0 : 1.0);
+                },
+                icon: AnimatedIcon(
+                  icon: AnimatedIcons.close_menu,
+                  progress: controller.view,
                 ),
               ),
               SizedBox(width: 10),
 
-              // GestureDetector(
-              //   onTap: () {
-              //     print('');
-              //   },
-              //   child: Icon(Icons.menu_rounded),
-              // ),
-              // SizedBox(width: 10),
 
             ],
           ),
-          body: TabBarView(
-            children: [
-              newArrival(),
-              newArrival(),
-              newArrival(),
-              newArrival(),
-              newArrival(),
-            ],
+          body: LayoutBuilder(
+            builder: bothPanels,
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget bothPanels(BuildContext context, BoxConstraints constraints) {
+
+    return Container(
+      child: Stack(
+        children: [
+          // BackPanel Module
+          backPanelModule(),
+
+          // FrontPanel Module
+          frontPanelModule(constraints),
+        ],
+      ),
+    );
+  }
+
+  // BackPanel Module
+  Widget backPanelModule() {
+    return Container(
+      color: CustomColor.kOrangeColor,
+      child: Center(
+        child: Text(
+          'Back Panel',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Front Panel Module
+  Widget frontPanelModule(constraints) {
+    return PositionedTransition(
+      rect: getPanelAnimation(constraints),
+      child: Material(
+        elevation: 10,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: TabBarView(
+                children: [
+                  newArrival(),
+                  newArrival(),
+                  newArrival(),
+                  newArrival(),
+                  newArrival(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
