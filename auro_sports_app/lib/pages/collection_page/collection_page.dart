@@ -76,7 +76,8 @@ class _CollectionPageState extends State<CollectionPage>
             backgroundColor: CustomColor.kOrangeColor,
             elevation: 0,
 
-            leading: collectionController.isTabClicked.value ? Container() : null,
+            leading:
+                collectionController.isTabClicked.value ? Container() : null,
 
             // TabBar List
             bottom: collectionController.isTabClicked.value
@@ -206,12 +207,18 @@ class _CollectionPageState extends State<CollectionPage>
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: CustomColor.kLightOrangeColor,
+                              child: Obx(
+                                () => Container(
+                                  height: 25,
+                                  width: 25,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: collectionController
+                                                .isViewSelected.value ==
+                                            index
+                                        ? Colors.black
+                                        : CustomColor.kLightOrangeColor,
+                                  ),
                                 ),
                               ),
                             ),
@@ -276,6 +283,135 @@ class _CollectionPageState extends State<CollectionPage>
                   ),
                   SizedBox(height: 10),
 
+                  // Attributes Module
+                  Text(
+                    'ATTRIBUTES',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    height: 30,
+                    child: ListView.builder(
+                      itemCount: collectionController.attributesList.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: GestureDetector(
+                            onTap: () {
+                              print('$index');
+                              collectionController.isAttributesSelected.value =
+                                  index;
+                            },
+                            child: Obx(
+                              () => Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: collectionController
+                                              .isAttributesSelected.value ==
+                                          index
+                                      ? CustomColor.kOrangeColor
+                                      : CustomColor.kLightOrangeColor,
+                                ),
+                                child: Text(
+                                  '${collectionController.attributesList[index]}',
+                                  style: TextStyle(
+                                      color: collectionController
+                                                  .isAttributesSelected.value ==
+                                              index
+                                          ? Colors.white
+                                          : null,
+                                      fontWeight: collectionController
+                                                  .isAttributesSelected.value ==
+                                              index
+                                          ? FontWeight.bold
+                                          : null),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Obx(
+                    () => Container(
+                      child: collectionController.isAttributesSelected.value == 0
+                          ? colorAttributes()
+                          : collectionController.isAttributesSelected.value == 1
+                              ? imagesAttributes()
+                              : collectionController.isAttributesSelected.value == 2
+                                  ? colorAttributes()
+                                  : collectionController.isAttributesSelected.value == 3
+                                      ? colorAttributes()
+                                      : collectionController.isAttributesSelected.value == 4
+                                          ? colorAttributes()
+                                          : Container(),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+
+                  // Tag Module
+                  Text(
+                    'BY TAG',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    height: 30,
+                    child: ListView.builder(
+                      itemCount: collectionController.tagList.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index){
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: GestureDetector(
+                            onTap: () {
+                              collectionController.isTagSelected.value =
+                                  index;
+                            },
+                            child: Obx(
+                              ()=> Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: collectionController
+                                      .isTagSelected.value ==
+                                      index
+                                      ? CustomColor.kOrangeColor
+                                      : CustomColor.kLightOrangeColor,
+                                ),
+                                child: Text(
+                                  '${collectionController.tagList[index]}',
+                                  style: TextStyle(
+                                      color: collectionController
+                                          .isTagSelected.value ==
+                                          index
+                                          ? Colors.white
+                                          : null,
+                                      fontWeight: collectionController
+                                          .isTagSelected.value ==
+                                          index
+                                          ? FontWeight.bold
+                                          : null
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+
+                  SizedBox(height: 20),
                   // Apply Button
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -315,6 +451,80 @@ class _CollectionPageState extends State<CollectionPage>
             ),
           )
         : Container(color: CustomColor.kOrangeColor);
+  }
+
+  // Color Attributes Module
+  Widget colorAttributes() {
+    return Obx(
+      ()=> Container(
+        height: 30,
+        child: collectionController.isAttributesValueSelected.value
+               ? Container()
+               : ListView.builder(
+          itemCount: collectionController.colorAttributeList.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(3),
+              child: GestureDetector(
+                onTap: () {
+                    collectionController.colorAttributeList[index].isChecked =
+                    !collectionController.colorAttributeList[index].isChecked;
+                    collectionController.getAttributesSelectedValue();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: collectionController.colorAttributeList[index].isChecked
+                           ? Colors.grey.shade300
+                           : CustomColor.kLightOrangeColor,
+                  ),
+                  child: Text('${collectionController.colorAttributeList[index].value}'),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  // Image Attributes Module
+  Widget imagesAttributes() {
+    return Obx(
+      ()=> Container(
+        height: 30,
+        child: ListView.builder(
+          itemCount: collectionController.imageAttributeList.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(3),
+              child: GestureDetector(
+                onTap: () {
+                  collectionController.imageAttributeList[index].isChecked =
+                      !collectionController.imageAttributeList[index].isChecked;
+                  collectionController.getAttributesSelectedValue();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: collectionController.imageAttributeList[index].isChecked
+                           ? Colors.grey.shade300
+                           : CustomColor.kLightOrangeColor,
+                  ),
+                  child: Text('${collectionController.imageAttributeList[index].value}'),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 
   // FrontPanel Module
@@ -400,14 +610,14 @@ class _CollectionPageState extends State<CollectionPage>
                 ),
               )
             : collectionController.isViewSelected.value == 0
-              ? twoLineGridViewModule()
-              : collectionController.isViewSelected.value == 1
-                ? threeLineGridViewModule()
-                : collectionController.isViewSelected.value == 2
-                  ? singleLineGridViewModule()
-                  : collectionController.isViewSelected.value == 3
-                    ? listViewModule()
-                    :  twoLineGridViewModule(),
+                ? twoLineGridViewModule()
+                : collectionController.isViewSelected.value == 1
+                    ? threeLineGridViewModule()
+                    : collectionController.isViewSelected.value == 2
+                        ? singleLineGridViewModule()
+                        : collectionController.isViewSelected.value == 3
+                            ? listViewModule()
+                            : twoLineGridViewModule(),
       ),
     );
   }
@@ -429,10 +639,9 @@ class _CollectionPageState extends State<CollectionPage>
               print(
                   'Product id : ${collectionController.collectionLists[index].id}');
               Get.to(
-                    () => ProductDetailPage(),
+                () => ProductDetailPage(),
                 transition: Transition.rightToLeft,
-                arguments:
-                collectionController.collectionLists[index].id,
+                arguments: collectionController.collectionLists[index].id,
               );
             },
             child: Container(
@@ -450,12 +659,12 @@ class _CollectionPageState extends State<CollectionPage>
                         height: 140,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
-                              fit: BoxFit.cover,
-                            ),
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -512,16 +721,14 @@ class _CollectionPageState extends State<CollectionPage>
           crossAxisCount: 3,
           mainAxisSpacing: 5,
           crossAxisSpacing: 5,
-          childAspectRatio: 0.7
-      ),
-      itemBuilder: (context, index){
+          childAspectRatio: 0.7),
+      itemBuilder: (context, index) {
         return Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: CustomColor.kLightOrangeColor,
             borderRadius: BorderRadius.circular(8),
           ),
-
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -545,7 +752,8 @@ class _CollectionPageState extends State<CollectionPage>
               Expanded(
                 flex: 3,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 5, left: 5, top: 0, bottom: 5),
+                  padding: const EdgeInsets.only(
+                      right: 5, left: 5, top: 0, bottom: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -596,16 +804,15 @@ class _CollectionPageState extends State<CollectionPage>
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
         mainAxisSpacing: 10,
-        childAspectRatio: Get.width / (Get.height/2.5),
+        childAspectRatio: Get.width / (Get.height / 2.5),
       ),
-      itemBuilder: (context, index){
+      itemBuilder: (context, index) {
         return Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: CustomColor.kLightOrangeColor,
             borderRadius: BorderRadius.circular(8),
           ),
-
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -629,7 +836,8 @@ class _CollectionPageState extends State<CollectionPage>
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 5, left: 5, top: 0, bottom: 5),
+                  padding: const EdgeInsets.only(
+                      right: 5, left: 5, top: 0, bottom: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -677,18 +885,16 @@ class _CollectionPageState extends State<CollectionPage>
       itemCount: collectionController.collectionLists.length,
       shrinkWrap: true,
       physics: BouncingScrollPhysics(),
-      itemBuilder: (context, index){
+      itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: CustomColor.kLightOrangeColor
-            ),
+                color: CustomColor.kLightOrangeColor),
             child: Row(
               children: [
-
                 Expanded(
                   flex: 30,
                   child: Container(
@@ -713,12 +919,9 @@ class _CollectionPageState extends State<CollectionPage>
                         '${collectionController.collectionLists[index].productname}',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold
-                        ),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 10),
-
                       Row(
                         children: [
                           Text(
@@ -747,5 +950,4 @@ class _CollectionPageState extends State<CollectionPage>
       },
     );
   }
-
 }
