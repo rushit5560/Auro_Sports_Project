@@ -6,6 +6,7 @@ import 'package:auro_sports_app/pages/cart_page/cart_page.dart';
 import 'package:auro_sports_app/pages/collection_page/collection_page.dart';
 import 'package:auro_sports_app/pages/home_page/home_controller.dart';
 import 'package:auro_sports_app/pages/product_detail_page/product_detail_page.dart';
+import 'package:auro_sports_app/zzzzz.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -367,38 +368,43 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget offerBanner() {
-    return Stack(
-      children: [
-        Container(
-          height: 120,
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            color: CustomColor.kOrangeColor,
-            borderRadius: BorderRadius.circular(15),
-            image: DecorationImage(
-              image: AssetImage('assets/images/slider2.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 8,
-          bottom: 5,
-          child: Container(
-            padding: EdgeInsets.all(8),
-            child: Text(
-              '30% Off On Your First Order',
-              textScaleFactor: 1.3,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        Get.to(()=> ZZZZZ());
+      },
+      child: Stack(
+        children: [
+          Container(
+            height: 120,
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: CustomColor.kOrangeColor,
+              borderRadius: BorderRadius.circular(15),
+              image: DecorationImage(
+                image: AssetImage('assets/images/slider2.png'),
+                fit: BoxFit.cover,
               ),
             ),
           ),
-        ),
-      ],
+          Positioned(
+            left: 8,
+            bottom: 5,
+            child: Container(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                '30% Off On Your First Order',
+                textScaleFactor: 1.3,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
