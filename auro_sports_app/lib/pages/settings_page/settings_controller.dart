@@ -6,20 +6,20 @@ class SettingsPageController extends GetxController {
   RxBool isDarkMode = false.obs;
 
   setIsDarkMode(darkModeValue) async {
-    print('darkModeValue : $darkModeValue');
+    print('4th darkModeValue : $darkModeValue');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('isDarkMode');
     bool darkMode = await prefs.setBool('isDarkMode', darkModeValue);
-    print('darkMode : $darkMode');
+    print('5th darkMode : $darkMode');
     isDarkMode = darkMode.obs;
-    print('setIsDarkMode : $isDarkMode');
+    print('6th setIsDarkMode : $isDarkMode');
   }
 
   getIsDarkMode() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool darkMode = prefs.getBool('isDarkMode') ?? false;
     isDarkMode = darkMode.obs;
-    print('isDarkMode : $isDarkMode');
+    print('init isDarkMode : $isDarkMode');
   }
 
   @override

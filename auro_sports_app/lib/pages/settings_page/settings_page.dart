@@ -193,12 +193,15 @@ class _SettingsPageState extends State<SettingsPage> {
 
                   onChanged: (value) {
 
+                    print('1st Value : $value');
+
                     setState(() {
                       settingsPageController.isDarkMode.value = value;
+                      print('2nd Value : ${settingsPageController.isDarkMode.value}');
                       settingsPageController.isDarkMode.value
                       ? Get.changeTheme(ThemeData.dark())
                       : Get.changeTheme(ThemeData.light());
-                      print('Switch Value : ${settingsPageController.isDarkMode.value}');
+                      print('3rd Switch Value : ${settingsPageController.isDarkMode.value}');
                       settingsPageController.setIsDarkMode(settingsPageController.isDarkMode.value);
                     });
 
