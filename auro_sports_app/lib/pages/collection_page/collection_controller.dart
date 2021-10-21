@@ -18,6 +18,7 @@ class CollectionController extends GetxController {
   RxBool isAttributesValueSelected = false.obs;
   RxInt isTagSelected = 10.obs;
 
+  List<String> tabsList = ['SEE ALL', 'BLAZERS', 'DRESSES', 'JACKETS', 'JEANS'];
   List<String> attributesList = ['COLOR', 'IMAGES', 'HEIGHT', 'SIZE', 'WIDTH'];
   List<String> tagList = ['BLACK', 'FEATURE', 'GRAY', 'RED', 'RIPPED', 'T-SHIRT', 'WHITE'];
 

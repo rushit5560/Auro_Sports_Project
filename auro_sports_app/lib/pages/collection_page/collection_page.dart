@@ -14,7 +14,6 @@ class _CollectionPageState extends State<CollectionPage>
     with SingleTickerProviderStateMixin {
   CollectionController collectionController = Get.put(CollectionController());
 
-  List<String> tabsList = ['SEE ALL', 'BLAZERS', 'DRESSES', 'JACKETS', 'JEANS'];
 
   late AnimationController controller;
   static const header_height = 32.0;
@@ -65,7 +64,7 @@ class _CollectionPageState extends State<CollectionPage>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: tabsList.length,
+      length: collectionController.tabsList.length,
       child: Obx(
         () => Scaffold(
           appBar: AppBar(
@@ -496,7 +495,9 @@ class _CollectionPageState extends State<CollectionPage>
     return Obx(
       ()=> Container(
         height: 30,
-        child: ListView.builder(
+        child: collectionController.isAttributesValueSelected.value
+               ? Container()
+               : ListView.builder(
           itemCount: collectionController.imageAttributeList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
@@ -566,7 +567,7 @@ class _CollectionPageState extends State<CollectionPage>
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TabBar(
-                    tabs: tabsList
+                    tabs: collectionController.tabsList
                         .map((title) =>
                             SizedBox(height: 30, child: Tab(text: title)))
                         .toList(),
