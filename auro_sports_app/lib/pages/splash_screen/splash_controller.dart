@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashController extends GetxController {
   bool? onBoardingValue = false;
-  BuildContext? context;
+  // BuildContext? context;
 
   @override
   void onInit() {

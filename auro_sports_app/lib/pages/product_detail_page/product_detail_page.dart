@@ -115,9 +115,7 @@ class ProductDetailPage extends StatelessWidget {
           // autoPlayInterval: Duration(seconds: 3),
           viewportFraction: 1,
           onPageChanged: (index, reason) {
-            // setState(() {
               productDetailController.activeIndex.value = index;
-            // });
           }),
     );
   }

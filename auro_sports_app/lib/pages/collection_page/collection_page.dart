@@ -724,73 +724,87 @@ class _CollectionPageState extends State<CollectionPage>
           crossAxisSpacing: 5,
           childAspectRatio: 0.7),
       itemBuilder: (context, index) {
-        return Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: CustomColor.kLightOrangeColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                flex: 7,
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey,
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
-                        fit: BoxFit.cover,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: GestureDetector(
+            onTap: () {
+              print(
+                  'Product id : ${collectionController.collectionLists[index].id}');
+              Get.to(
+                    () => ProductDetailPage(),
+                transition: Transition.rightToLeft,
+                arguments: collectionController.collectionLists[index].id,
+              );
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: CustomColor.kLightOrangeColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey,
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 5, left: 5, top: 0, bottom: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '${collectionController.collectionLists[index].productname}',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(height: 2),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 5, left: 5, top: 0, bottom: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
-                            '\$${collectionController.collectionLists[index].productcost}',
+                            '${collectionController.collectionLists[index].productname}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
                           ),
-                          SizedBox(width: 8),
-                          Text(
-                            '\$${collectionController.collectionLists[index].productcost}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
-                            ),
+                          SizedBox(height: 2),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                '\$${collectionController.collectionLists[index].productcost}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                '\$${collectionController.collectionLists[index].productcost}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         );
       },
@@ -808,73 +822,84 @@ class _CollectionPageState extends State<CollectionPage>
         childAspectRatio: Get.width / (Get.height / 2.5),
       ),
       itemBuilder: (context, index) {
-        return Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: CustomColor.kLightOrangeColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                flex: 8,
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.grey,
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
-                        fit: BoxFit.cover,
+        return GestureDetector(
+          onTap: () {
+            print(
+                'Product id : ${collectionController.collectionLists[index].id}');
+            Get.to(
+                  () => ProductDetailPage(),
+              transition: Transition.rightToLeft,
+              arguments: collectionController.collectionLists[index].id,
+            );
+          },
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: CustomColor.kLightOrangeColor,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  flex: 8,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey,
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 5, left: 5, top: 0, bottom: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '${collectionController.collectionLists[index].productname}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(height: 2),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '\$${collectionController.collectionLists[index].productcost}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        right: 5, left: 5, top: 0, bottom: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          '${collectionController.collectionLists[index].productname}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: 2),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              '\$${collectionController.collectionLists[index].productcost}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            '\$${collectionController.collectionLists[index].productcost}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
+                            SizedBox(width: 8),
+                            Text(
+                              '\$${collectionController.collectionLists[index].productcost}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -889,62 +914,73 @@ class _CollectionPageState extends State<CollectionPage>
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: CustomColor.kLightOrangeColor),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 30,
-                  child: Container(
-                    height: Get.width * 0.25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
-                        fit: BoxFit.cover,
+          child: GestureDetector(
+            onTap: () {
+              print(
+                  'Product id : ${collectionController.collectionLists[index].id}');
+              Get.to(
+                    () => ProductDetailPage(),
+                transition: Transition.rightToLeft,
+                arguments: collectionController.collectionLists[index].id,
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: CustomColor.kLightOrangeColor),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 30,
+                    child: Container(
+                      height: Get.width * 0.25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              '${ApiUrl.MainPath}${collectionController.collectionLists[index].showimg}'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  flex: 70,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${collectionController.collectionLists[index].productname}',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Text(
-                            '\$${collectionController.collectionLists[index].productcost}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                  SizedBox(width: 10),
+                  Expanded(
+                    flex: 70,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${collectionController.collectionLists[index].productname}',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Text(
+                              '\$${collectionController.collectionLists[index].productcost}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 5),
-                          Text(
-                            '\$${collectionController.collectionLists[index].productcost}',
-                            style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
+                            SizedBox(width: 5),
+                            Text(
+                              '\$${collectionController.collectionLists[index].productcost}',
+                              style: TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(width: 10),
-              ],
+                  SizedBox(width: 10),
+                ],
+              ),
             ),
           ),
         );
