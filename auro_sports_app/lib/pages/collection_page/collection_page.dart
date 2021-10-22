@@ -543,11 +543,11 @@ class _CollectionPageState extends State<CollectionPage>
             Expanded(
               child: TabBarView(
                 children: [
-                  newArrival(),
-                  newArrival(),
-                  newArrival(),
-                  newArrival(),
-                  newArrival(),
+                  collectionListViews(),
+                  collectionListViews(),
+                  collectionListViews(),
+                  collectionListViews(),
+                  collectionListViews(),
                 ],
               ),
             ),
@@ -595,7 +595,7 @@ class _CollectionPageState extends State<CollectionPage>
     );
   }
 
-  Widget newArrival() {
+  Widget collectionListViews() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Obx(

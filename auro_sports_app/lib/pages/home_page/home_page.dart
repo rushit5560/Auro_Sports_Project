@@ -18,12 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final newArrivalImg = [
-    'assets/images/newarrival1.png',
-    'assets/images/newarrival2.png',
-    'assets/images/newarrival3.png',
-    'assets/images/newarrival1.png',
-  ];
+
   // int activeIndex1 = 0;
   HomeController homeController = Get.put(HomeController());
 
@@ -45,12 +40,6 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: CustomDrawer(),
       body: Obx(() => homeController.isLoading.value
-          /*? Center(
-              child: CircularProgressIndicator(
-                color: CustomColor.kOrangeColor,
-                backgroundColor: Colors.grey,
-              ),
-            )*/
           ? ShimmerLoader().homePageLoader()
           : SingleChildScrollView(
               child: Column(
