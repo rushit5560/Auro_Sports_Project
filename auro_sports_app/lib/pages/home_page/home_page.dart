@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: CustomDrawer(),
+
       body: Obx(() => homeController.isLoading.value
           ? ShimmerLoader().homePageLoader()
           : SingleChildScrollView(

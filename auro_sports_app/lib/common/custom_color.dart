@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:auro_sports_app/common/appstate.dart';
 
-AppState appState = AppState();
+// AppState appState = AppState();
 
 class CustomColor {
   static const Color kOrangeColor = Color(0xfffec107);
