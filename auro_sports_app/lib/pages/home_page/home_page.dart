@@ -1,4 +1,5 @@
 import 'package:auro_sports_app/common/api_url.dart';
+import 'package:auro_sports_app/common/common_function.dart';
 import 'package:auro_sports_app/common/custom_color.dart';
 import 'package:auro_sports_app/common/custom_drawer/custom_drawer.dart';
 import 'package:auro_sports_app/common/shimmer_loader/shimmer_loader.dart';
@@ -16,7 +17,6 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-
 class _HomePageState extends State<HomePage> {
 
   // int activeIndex1 = 0;
@@ -25,44 +25,46 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('-------------Home Page Build-------------');
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: CustomColor.kOrangeColor,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.to(() => CartPage());
-              },
-              icon: Icon(Icons.shopping_cart_rounded))
-        ],
-      ),
-      drawer: CustomDrawer(),
+    return GestureDetector(
+      onTap: () => CommonFunctions().hideKeyBoard(),
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: CustomColor.kOrangeColor,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Get.to(() => CartPage());
+                },
+                icon: Icon(Icons.shopping_cart_rounded))
+          ],
+        ),
+        drawer: CustomDrawer(),
 
-      body: Obx(() => homeController.isLoading.value
-          ? ShimmerLoader().homePageLoader()
-          : SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: 10),
-                  searchBar(),
-                  SizedBox(height: 20),
-                  carouselSlider(),
-                  SizedBox(height: 8),
-                  carouselIndicator(),
-                  SizedBox(height: 20),
-                  newArrival(),
-                  SizedBox(height: 25),
-                  offerBanner(),
-                  SizedBox(height: 25),
-                  testimonials(),
-                  SizedBox(height: 25),
-                  featuredProducts(),
-                  SizedBox(height: 10),
-                ],
-              ),
-            )),
+        body: Obx(() => homeController.isLoading.value
+            ? ShimmerLoader().homePageLoader()
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    searchBar(),
+                    SizedBox(height: 20),
+                    carouselSlider(),
+                    SizedBox(height: 8),
+                    carouselIndicator(),
+                    SizedBox(height: 20),
+                    newArrival(),
+                    SizedBox(height: 25),
+                    offerBanner(),
+                    SizedBox(height: 25),
+                    testimonials(),
+                    SizedBox(height: 25),
+                    featuredProducts(),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              )),
+      ),
     );
   }
 

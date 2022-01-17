@@ -1,4 +1,5 @@
 import 'package:auro_sports_app/common/custom_color.dart';
+import 'package:auro_sports_app/pages/change_password_page/change_password_page.dart';
 import 'settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,7 +45,8 @@ class _SettingsPageState extends State<SettingsPage> {
           SizedBox(height: 10),
           newDeals(),
           SizedBox(height: 10),
-          Languages(),
+          changePassword(),
+          // languages(),
         ],
       ),
     );
@@ -257,7 +259,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget Languages() {
+  Widget languages() {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
       child: Material(
@@ -290,6 +292,34 @@ class _SettingsPageState extends State<SettingsPage> {
               ],
             ),
 
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget changePassword() {
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => ChangePasswordPage());
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+        child: Material(
+          borderRadius: BorderRadius.circular(20),
+          elevation: 3,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 16),
+            child: Container(
+              width: Get.width,
+              child: Text(
+                'Change Password',
+                // textScaleFactor: 1.3,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
         ),
       ),

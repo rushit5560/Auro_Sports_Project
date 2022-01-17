@@ -1,71 +1,13 @@
 import 'package:auro_sports_app/common/custom_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'contactus_page_controller.dart';
 
-class ContactUsPage extends StatelessWidget {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController emailIdController = TextEditingController();
-  TextEditingController subjectController = TextEditingController();
-  TextEditingController commentController = TextEditingController();
+class FullNameField extends StatelessWidget {
+  final controller = Get.find<ContactUsPageController>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Contact Us'),
-        centerTitle: true,
-        backgroundColor: CustomColor.kOrangeColor,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            contactImg(),
-            SizedBox(height: 20),
-
-            Form(
-              key: formKey,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Container(
-                      child: Column(
-                        children: [
-                          fullNameField(),
-                          SizedBox(height: 20),
-                          emailIdField(),
-                          SizedBox(height: 20),
-                          subjectField(),
-                          SizedBox(height: 20),
-                          commentField(),
-                          SizedBox(height: 30),
-                          submitButton(context),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget contactImg() {
-    return Container(
-      height: Get.height * 0.25,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/contactus.png'))),
-    );
-  }
-
-  Widget fullNameField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -92,7 +34,7 @@ class ContactUsPage extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.orangeAccent),
                   borderRadius: BorderRadius.circular(25)),
             ),
-            controller: fullNameController,
+            controller: controller.fullNameController,
             validator: (value) {
               if (value!.isEmpty /* || value.length == null*/) {
                 return "Name cannot be empty";
@@ -103,8 +45,13 @@ class ContactUsPage extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget emailIdField() {
+class EmailIdField extends StatelessWidget {
+  final controller = Get.find<ContactUsPageController>();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -130,7 +77,7 @@ class ContactUsPage extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.orangeAccent),
                   borderRadius: BorderRadius.circular(25)),
             ),
-            controller: emailIdController,
+            controller: controller.emailIdController,
             validator: (value) {
               if (value!.isEmpty /* || value.length == null*/) {
                 return "Email cannot be empty";
@@ -143,8 +90,13 @@ class ContactUsPage extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget subjectField() {
+class SubjectField extends StatelessWidget {
+  final controller = Get.find<ContactUsPageController>();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -170,7 +122,7 @@ class ContactUsPage extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.orangeAccent),
                   borderRadius: BorderRadius.circular(25)),
             ),
-            controller: subjectController,
+            controller: controller.subjectController,
             validator: (value) {
               if (value!.isEmpty /* || value.length == null*/) {
                 return "Subject cannot be empty";
@@ -181,8 +133,61 @@ class ContactUsPage extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget commentField() {
+class PhoneNoModule extends StatelessWidget {
+  final controller = Get.find<ContactUsPageController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            'Phone No',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: TextFormField(
+            cursorColor: CustomColor.kOrangeColor,
+            keyboardType: TextInputType.phone,
+            maxLength: 10,
+            decoration: InputDecoration(
+              isDense: true,
+              counterText: '',
+              contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.orangeAccent),
+                  borderRadius: BorderRadius.circular(25)),
+            ),
+            controller: controller.phoneNoController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "Phone No cannot be empty";
+              } else if(value.length != 10){
+                return "Phone No not valid.";
+              }
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CommentField extends StatelessWidget {
+  final controller = Get.find<ContactUsPageController>();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -209,7 +214,7 @@ class ContactUsPage extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.orangeAccent),
                   borderRadius: BorderRadius.circular(15)),
             ),
-            controller: commentController,
+            controller: controller.commentController,
             validator: (value) {
               if (value!.isEmpty /* || value.length == null*/) {
                 return "Comment cannot be empty";
@@ -220,20 +225,42 @@ class ContactUsPage extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget submitButton(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
+class ContactImg extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: Get.height * 0.25,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/contactus.png'))),
+    );
+  }
+}
 
+class SubmitButtonModule extends StatelessWidget {
+  final controller = Get.find<ContactUsPageController>();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: GestureDetector(
         onTap: () {
-          if (formKey.currentState!.validate()) {
-            print('Inside formkey');
+          if (controller.formKey.currentState!.validate()) {
+            controller.getContactUsData(
+              fullName: '${controller.fullNameController.text}',
+              emailId: '${controller.emailIdController.text}',
+              subject: '${controller.subjectController.text}',
+              phoneNo: '${controller.phoneNoController.text}',
+              comment: '${controller.commentController.text}'
+            );
+            controller.clearAllTextFields();
           }
         },
         child: Container(
-          width: deviceWidth,
+          width: Get.width,
           decoration: BoxDecoration(
               color: CustomColor.kOrangeColor,
               borderRadius: BorderRadius.circular(25)),

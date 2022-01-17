@@ -31,6 +31,13 @@ class ApiUrl {
   static const AddOrderApi = MainPath + 'api/orderadd';
   static const DeleteCartProductApi = MainPath + 'api/deletecart';
 
+  static const ContactUsApi = MainPath + 'api/contactus';
+  static const ChangePasswordApi = MainPath + 'api/changepassword';
+  static const CountryApi = MainPath + 'api/country';
+  static const StateApi = MainPath + 'api/states';
+  static const CityApi = MainPath + 'api/city';
+  static const UserProfileApi = MainPath + 'api/userprofile';
+
   static const InvoicePdfPrefix = "https://ecomsport.omdemo.co.in/public/";
   static const InvoicePdfSuffix = ".pdf";
 }

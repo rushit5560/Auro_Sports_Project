@@ -669,28 +669,28 @@ class _CategoryCollectionPageState extends State<CategoryCollectionPage> with Si
                                 )),
                           ),
                         ),
-                        Positioned(
-                          right: 20,
-                          bottom: 0,
-                          child: GestureDetector(
-                            onTap: () =>
-                                print('Clicked On Cart Button'),
-                            child: Container(
-                              child: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: Icon(
-                                  Icons.shopping_cart_rounded,
-                                  size: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: CustomColor.kOrangeColor,
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Positioned(
+                        //   right: 20,
+                        //   bottom: 0,
+                        //   child: GestureDetector(
+                        //     onTap: () =>
+                        //         print('Clicked On Cart Button'),
+                        //     child: Container(
+                        //       child: Padding(
+                        //         padding: const EdgeInsets.all(5),
+                        //         child: Icon(
+                        //           Icons.shopping_cart_rounded,
+                        //           size: 20,
+                        //           color: Colors.white,
+                        //         ),
+                        //       ),
+                        //       decoration: BoxDecoration(
+                        //         shape: BoxShape.circle,
+                        //         color: CustomColor.kOrangeColor,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

@@ -4,7 +4,7 @@ import 'package:auro_sports_app/common/custom_drawer/drawer_controller.dart';
 import 'package:auro_sports_app/pages/blog_page/blog_page.dart';
 import 'package:auro_sports_app/pages/category_page/category_page.dart';
 import 'package:auro_sports_app/pages/collection_page/collection_page.dart';
-import 'package:auro_sports_app/pages/contact_us/contactus_page.dart';
+import 'package:auro_sports_app/pages/contact_us_page/contactus_page.dart';
 import 'package:auro_sports_app/pages/index_page/index_page.dart';
 import 'package:auro_sports_app/pages/notification_page/notification_page.dart';
 import 'package:auro_sports_app/pages/order_page/order_page.dart';

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -42,6 +43,10 @@ class CommonFunctions {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
+  }
+
+  hideKeyBoard() {
+    FocusManager.instance.primaryFocus!.unfocus();
   }
 
 }
