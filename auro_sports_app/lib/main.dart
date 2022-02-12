@@ -63,9 +63,10 @@ class MyApp extends StatelessWidget {
       translations: LocalizationService(),
       home: SplashScreen(),
 
-      darkTheme: ThemeData.dark().copyWith(
-          primaryColor: Colors.white
-      ),
+      // darkTheme: ThemeData.dark().copyWith(
+      //     primaryColor: Colors.white
+      // ),
+
     );
   }
 }

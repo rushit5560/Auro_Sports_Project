@@ -3,6 +3,8 @@ import 'package:auro_sports_app/pages/address_manager_page/address_manager_page.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'profile_screen_controller.dart';
+import 'profile_screen_widgets.dart';
 import 'user_all_address_controller.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -13,8 +15,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  UserAllAddressController userAllAddressController =
-      Get.put(UserAllAddressController());
+  UserAllAddressController userAllAddressController = Get.put(UserAllAddressController());
+  final profileScreenController = Get.put(ProfileScreenController());
 
 
   @override
@@ -90,9 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     shape: BoxShape.circle, color: CustomColor.kOrangeColor),
                 child: Center(
                   child: IconButton(
-                    onPressed: () {
-                      // print('Edit Profile');
-                    },
+                    onPressed: () => editProfileDialogModule(context),
                     icon: Icon(Icons.edit),
                     color: Colors.white,
                     iconSize: 22,

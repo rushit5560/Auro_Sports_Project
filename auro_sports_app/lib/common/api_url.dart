@@ -36,7 +36,7 @@ class ApiUrl {
   static const CountryApi = MainPath + 'api/country';
   static const StateApi = MainPath + 'api/states';
   static const CityApi = MainPath + 'api/city';
-  static const UserProfileApi = MainPath + 'api/userprofile';
+  static const UpdateUserProfileApi = MainPath + 'api/userprofile';
 
   static const InvoicePdfPrefix = "https://ecomsport.omdemo.co.in/public/";
   static const InvoicePdfSuffix = ".pdf";
