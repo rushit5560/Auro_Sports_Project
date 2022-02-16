@@ -1,17 +1,17 @@
 import 'package:auro_sports_app/common/common_function.dart';
 import 'package:auro_sports_app/common/custom_color.dart';
 import 'package:auro_sports_app/common/custom_drawer/drawer_controller.dart';
-import 'package:auro_sports_app/pages/blog_page/blog_page.dart';
-import 'package:auro_sports_app/pages/category_page/category_page.dart';
-import 'package:auro_sports_app/pages/collection_page/collection_page.dart';
-import 'package:auro_sports_app/pages/contact_us_page/contactus_page.dart';
-import 'package:auro_sports_app/pages/index_page/index_page.dart';
-import 'package:auro_sports_app/pages/notification_page/notification_page.dart';
-import 'package:auro_sports_app/pages/order_page/order_page.dart';
-import 'package:auro_sports_app/pages/profile_page/profile_page.dart';
-import 'package:auro_sports_app/pages/settings_page/settings_page.dart';
-import 'package:auro_sports_app/pages/signin_page/signin_page.dart';
-import 'package:auro_sports_app/pages/wishlist_page/wishlist_page.dart';
+import 'package:auro_sports_app/screens/blog_screen/blog_screen.dart';
+import 'package:auro_sports_app/screens/category_screen/category_screen.dart';
+import 'package:auro_sports_app/screens/collection_screen/collection_screen.dart';
+import 'package:auro_sports_app/screens/contact_us_screen/contactus_screen.dart';
+import 'package:auro_sports_app/screens/index_screen/index_screen.dart';
+import 'package:auro_sports_app/screens/notification_screen/notification_screen.dart';
+import 'package:auro_sports_app/screens/order_screen/order_screen.dart';
+import 'package:auro_sports_app/screens/profile_screen/profile_screen.dart';
+import 'package:auro_sports_app/screens/settings_screen/settings_screen.dart';
+import 'package:auro_sports_app/screens/signin_screen/signin_screen.dart';
+import 'package:auro_sports_app/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -136,7 +136,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => IndexPage());
+        Get.to(() => IndexScreen());
       },
       leading: Icon(Icons.home_outlined,/*color: Colors.black,*/),
       title: Text('Home',
@@ -150,7 +150,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => CollectionPage());
+        Get.to(() => CollectionScreen());
       },
       leading: Icon(Icons.storefront_outlined,/*color: Colors.black,*/),
       title: Text('Collection',
@@ -164,7 +164,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => CategoryPage());
+        Get.to(() => CategoryScreen());
       },
       leading: Icon(Icons.category_outlined,/*color: Colors.black,*/),
       title: Text('Categories',
@@ -178,7 +178,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => ProfilePage());
+        Get.to(() => ProfileScreen());
       },
       leading: Icon(Icons.person_outline_outlined,/*color: Colors.black,*/),
       title: Text('Profile',
@@ -192,7 +192,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => NotificationPage());
+        Get.to(() => NotificationScreen());
       },
       leading: Icon(Icons.notifications_on_outlined,/*color: Colors.black,*/),
       title: Text('Notification',
@@ -206,7 +206,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => SettingsPage());
+        Get.to(() => SettingsScreen());
       },
       leading: Icon(Icons.settings_outlined,/*color: Colors.black,*/),
       title: Text('Settings',
@@ -221,7 +221,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: ListTile(
         onTap: () {
           Get.back();
-          Get.to(() => SignInPage());
+          Get.to(() => SignInScreen());
         },
         leading: Icon(Icons.login_outlined,/*color: Colors.black,*/),
         title: Text('Login',
@@ -236,7 +236,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => ContactUsPage());
+        Get.to(() => ContactUsScreen());
       },
       leading: Icon(Icons.contact_phone_outlined,/*color: Colors.black,*/),
       title: Text('Contact Us',
@@ -250,7 +250,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => OrderPage());
+        Get.to(() => OrderScreen());
       },
       leading: Icon(Icons.apps_outlined,/*color: Colors.black,*/),
       title: Text('Orders',
@@ -264,7 +264,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => WishListPage());
+        Get.to(() => WishListScreen());
       },
       leading: Icon(Icons.list_alt_rounded,/*color: Colors.black,*/),
       title: Text('Wishlist',
@@ -278,7 +278,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(() => BlogPage());
+        Get.to(() => BlogScreen());
       },
       leading: Icon(Icons.post_add_rounded,/*color: Colors.black,*/),
       title: Text('Blogs',

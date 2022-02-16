@@ -1,8 +1,8 @@
-import 'package:auro_sports_app/pages/language/localization_service.dart';
-import 'package:auro_sports_app/pages/splash_screen/splash_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:auro_sports_app/common/localization_service/localization_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'screens/splash_screen/splash_screen.dart';
 
 
 void main(){
