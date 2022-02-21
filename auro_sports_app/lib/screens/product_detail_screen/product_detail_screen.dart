@@ -318,7 +318,7 @@ class ProductDetailScreen extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               //Todo : Add Product In Cart Button
-              if(productDetailController.userId == null){
+              if(productDetailController.userId.toString().isEmpty){
                 Get.snackbar('Title', 'Login Required');
               } else {
                 // Get.snackbar('title', 'Login Done');
